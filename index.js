@@ -6,7 +6,7 @@ dotenv.config({ path: "./config.env" });
 const connectdb = require("./connectdb");
 const http = require("http");
 const { Server } = require("socket.io");
-//PORT
+//POR
 PORT = process.env.PORT || 8000;
 
 //create the exppress app
