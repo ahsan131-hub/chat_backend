@@ -34,12 +34,23 @@ io.on("connection", (socket) => {
       username: socket.username,
     });
   }
-  console.log(users);
+  // console.log(users);
   socket.emit("users", users);
   // socket.to(socket.id).emit("users", users);
   socket.broadcast.emit("user connected", {
     userID: socket.id,
     username: socket.username,
+  });
+
+  socket.on("private message", async ({ content, to }) => {
+    socket.join(to);
+    console.log(content);
+    console.log(to);
+    console.log(socket.rooms);
+    socket.to(to).emit("recieve message", {
+      from: socket.id,
+      content,
+    });
   });
 });
 
